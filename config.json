@@ -1,0 +1,22 @@
+{
+  "trackingIntervalSec": 60,
+  "trackingTimeoutSec": 15,
+  "ignoreDurationShorterThanSec": 180,
+  "trackProcesses": [
+    {
+      "name": "calculator"
+    },
+    {
+      "name": "webstorm",
+      "group": "productivity"
+    },
+    {
+      "name": "sublime",
+      "group": "productivity"
+    },
+    {
+      "name": "calibre",
+      "alias": "reading"
+    }
+  ]
+}
