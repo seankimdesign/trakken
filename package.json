@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "ps-node": "^0.1.6",
+    "sqlite3": "^4.0.1",
     "tasklist": "^3.1.0"
   }
 }
