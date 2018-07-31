@@ -9,7 +9,7 @@ export const initializeDatabase = cb => {
     }
     console.log('Connected to the database')
 
-    db.run(`CREATE TABLE if not exists stamps (id INTEGER PRIMARY KEY AUTOINCREMENT, proc_id TEXT, timestamp TEXT)`, err => {
+    db.run(`CREATE TABLE if not exists stamps (id INTEGER PRIMARY KEY AUTOINCREMENT, proc_name TEXT, timestamp TEXT)`, err => {
       if (err) {
         console.error(err.message)
         return null
@@ -21,21 +21,27 @@ export const initializeDatabase = cb => {
   })
 }
 
-export const _saveStamp = db => procId =>
-  new Promise((resolve, reject) => {
-    db.run(`INSERT INTO stamps (proc_id, timestamp) VALUES (${procId}, datetime('now', 'localtime'))`, err => {
+export const _saveStamps = db => procNames => {
+  const queryString = 
+    `INSERT INTO stamps (proc_name, timestamp) VALUES
+      ${procNames.map(name => `(${name}, datetime('now', 'localtime'))`)}`
+  return new Promise((resolve, reject) => {
+    db.run(queryString , err => {
       if (err) {
         console.error(err.message)
         reject(err)
       }
-      console.log(`Inserted stamp: ${procId}`)
+      console.log(`Inserted stamps for: ${procIds.join(', ')}`)
       resolve()
     })
   })
+}
+
+export const _saveStamp = db => procName => _saveStamps([procId])
 
 export const _getStamps = db => () =>
   new Promise((resolve, reject) => {
-    db.all(`SELECT proc_id, timestamp from stamps`, (err, rows) => {
+    db.all(`SELECT proc_name, timestamp from stamps`, (err, rows) => {
       if (err) {
         console.error(err.message)
         reject(err)

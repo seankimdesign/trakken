@@ -1,14 +1,12 @@
+import { log } from '../util'
 import tasklist from 'tasklist'
 
-const stamp = processId => (
-  {
-    time: (new Date()).getTime(),
-    id: processId
-  }
-)
+/*
+** Return an array of process names
+*/
 
 export default processIds => {
-  console.log('-> Scan in progress')
+  log('Scan in progress')
   return new Promise(resolve => {
     tasklist().then(tasks => {
       resolve(tasks.filter(t => (
@@ -17,7 +15,7 @@ export default processIds => {
         processIds.some(id => (
           t.imageName.toLowerCase().includes(id)
         ))
-      )).map(t => stamp(t.imageName)))
+      )))
     })
   })
 }

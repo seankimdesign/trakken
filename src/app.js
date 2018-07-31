@@ -1,19 +1,20 @@
+import getTrackController from './controllers/trackController'
 import config from './modules/configuration'
-// import trackProcesses from './modules/tracker'
-import { initializeDatabase, _saveStamp, _getStamps } from './modules/db'
+import { initializeDatabase, _saveStamps, _getStamps } from './modules/db'
 
 const initializeApplication = async db => {
   console.log('Initializing')
   console.log(config)
-  // const results = await trackProcesses(config.processList)
 
-  const saveStamp = _saveStamp(db)
+  const saveStamps = _saveStamps(db)
   const getStamps = _getStamps(db)
 
-  await saveStamp('100101')
+  const trackController = getTrackController({
+    ...config,
+    saveStamps
+  })
 
-  const results = await getStamps()
-  console.log(results)
+  trackController.start()
 }
 
 initializeDatabase(initializeApplication)
