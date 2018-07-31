@@ -23,3 +23,13 @@ export const dump = obj => {
   Object.entries(obj).map(v => console.log(v.toString()))
   console.groupEnd()
 }
+
+export const dateNow = () => {
+  const now = new Date()
+  const date = pad(now.getDate())
+  const month = pad((now.getMonth() + 1))
+  const year = now.getFullYear()
+  return `${month}/${date}/${year}`
+}
+
+export const pad = str => ("0" + str).substr(-2)
