@@ -185,10 +185,6 @@ export default ({
       try {
         updateDailyRaw(procNames)
         cache = {...cache, today: recalculateDailyCache()}
-        console.log(JSON.stringify(cache.eventStore))
-        console.log(JSON.stringify(cache.timeStore))
-        console.log(JSON.stringify(cache.today))
-        console.log('----- ^ caches')
         return true
       } catch (e) {
         return e
