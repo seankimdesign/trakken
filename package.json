@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist",
     "fix": "standard --fix --silent",
-    "start": "npm run fix && npm run build && node dist/app.js"
+    "start": "npm run build && node dist/app.js"
   },
   "author": "",
   "license": "ISC",

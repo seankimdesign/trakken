@@ -1,7 +1,7 @@
 {
-  "trackingIntervalSec": 60,
+  "trackingIntervalSec": 30,
   "trackingTimeoutSec": 15,
-  "ignoreDurationShorterThanSec": 180,
+  "ignoreDurationShorterThanSec": 90,
   "trackProcesses": [
     {
       "name": "calculator"

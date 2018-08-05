@@ -22,22 +22,24 @@ export const initializeDatabase = cb => {
 }
 
 export const _saveStamps = db => procNames => {
-  const queryString = 
-    `INSERT INTO stamps (proc_name, timestamp) VALUES
-      ${procNames.map(name => `(${name}, datetime('now', 'localtime'))`)}`
+  const queryString =
+    `INSERT INTO stamps (proc_name, timestamp)
+    VALUES ${procNames.map(name =>
+    `("${name}", datetime('now', 'localtime'))`
+  )}`
   return new Promise((resolve, reject) => {
-    db.run(queryString , err => {
+    db.run(queryString, err => {
       if (err) {
         console.error(err.message)
         reject(err)
       }
-      console.log(`Inserted stamps for: ${procIds.join(', ')}`)
-      resolve()
+      console.log(`Inserted stamps for: ${procNames.join(', ')}`)
+      resolve(true)
     })
   })
 }
 
-export const _saveStamp = db => procName => _saveStamps([procId])
+export const _saveStamp = db => procName => _saveStamps([procName])
 
 export const _getStamps = db => () =>
   new Promise((resolve, reject) => {

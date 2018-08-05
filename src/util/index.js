@@ -1,7 +1,7 @@
 export const log = (type, msg) => {
   let prefix = '[INFO] '
   let fn = console.log
-  switch (type.toLowerCase()){
+  switch (type.toLowerCase()) {
     case 'warn':
       prefix = '[WARN] '
       fn = console.warn
@@ -11,7 +11,7 @@ export const log = (type, msg) => {
       fn = console.error
       break
   }
-  if (typeof msg === "undefined" && prefix === '[INFO] '){
+  if (typeof msg === 'undefined' && prefix === '[INFO] ') {
     console.log(prefix + type)
   } else {
     fn(prefix + msg)
@@ -25,7 +25,7 @@ export const dump = obj => {
 }
 
 export const dateString = timestamp => {
-  const now = typeof timestamp === "undefined" ? new Date() : new Date(timestamp)
+  const now = typeof timestamp === 'undefined' ? new Date() : new Date(timestamp)
   const date = pad(now.getDate())
   const month = pad((now.getMonth() + 1))
   const year = now.getFullYear()
@@ -43,4 +43,4 @@ export const getDayEnd = timestamp => {
 
 export const getDayStart = timestamp => getDayEnd(timestamp) - 86399999
 
-export const pad = str => ("0" + str).substr(-2)
+export const pad = str => ('0' + str).substr(-2)
